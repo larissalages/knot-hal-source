@@ -703,8 +703,7 @@ static int8_t evt_presence(struct mgmt_nrf24_header *mhdr)
 	 * Print every MAC sending presence in order to ease the discover of
 	 * things trying to connect to the gw.
 	 */
-	hal_log_info("Thing sending presence. MAC = %s Name = %s",
-							mac_str, evt_pre->name);
+	hal_log_info("nRF24 MAC = %s Name = %s", mac_str, evt_pre->name);
 	peer->last_beacon = hal_time_ms();
 	strncpy(peer->name, (char *) evt_pre->name,
 					MIN(sizeof(peer->name) - 1,
@@ -792,6 +791,7 @@ done:
 		g_hash_table_remove(peer_bcast_table, mac_str);
 	}
 
+	hal_log_info("hal_comm_connect(%s)", mac_str);
 	/* Send Connect */
 	ret = hal_comm_connect(peers[position].socket_fd,
 			&evt_pre->mac.address.uint64);
