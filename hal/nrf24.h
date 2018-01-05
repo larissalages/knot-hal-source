@@ -6,6 +6,7 @@
  * of the BSD license. See the LICENSE file for details.
  *
  */
+#include "nrf24l01_ll.h"
 
 #ifndef __HAL_NRF24_H__
 #define __HAL_NRF24_H__
